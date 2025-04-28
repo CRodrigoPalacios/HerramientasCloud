@@ -1,95 +1,186 @@
-import { useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
-import { Star } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import { getProductById } from '../data/products';
+import Header from '@/components/Header';
+import '@/styles/products/ProductDetails.css';
 
 const ProductDetail = () => {
-  const [selectedSize, setSelectedSize] = useState('');
   const { id } = useParams();
-
-  // Datos de ejemplo
-  const product = {
-    id: 1,
-    name: 'Chronograph Master',
-    brand: 'Audemars',
-    price: 12500,
-    rating: 4.9,
-    reviews: 28,
-    description: 'Luxury chronograph watch with precision movement',
-    sizes: ['38mm', '42mm', '44mm'],
-    image: '/chronograph-master.jpg'
+  const [product, setProduct] = useState(null);
+  const [selectedColor, setSelectedColor] = useState('');
+  const [selectedSize, setSelectedSize] = useState('');
+  const [quantity, setQuantity] = useState(1);
+  const [activeImageIndex, setActiveImageIndex] = useState(0);
+  
+  useEffect(() => {
+    // Simulando una carga desde API
+    const loadedProduct = getProductById(id);
+    setProduct(loadedProduct);
+    
+    if (loadedProduct) {
+      setSelectedColor(loadedProduct.colors[0]);
+      setSelectedSize(loadedProduct.sizes[0]);
+    }
+  }, [id]);
+  
+  if (!product) {
+    return <div className="loading">Loading...</div>;
+  }
+  
+  const handleQuantityChange = (amount) => {
+    const newQuantity = quantity + amount;
+    if (newQuantity >= 1) {
+      setQuantity(newQuantity);
+    }
   };
-
+  
+  const handleColorSelect = (color) => {
+    setSelectedColor(color);
+  };
+  
+  const handleSizeSelect = (size) => {
+    setSelectedSize(size);
+  };
+  
+  const renderStars = (rating) => {
+    const stars = [];
+    const fullStars = Math.floor(rating);
+    const hasHalfStar = rating % 1 !== 0;
+    
+    // Añadir estrellas completas
+    for (let i = 0; i < fullStars; i++) {
+      stars.push(<span key={`full-${i}`} className="star full-star">★</span>);
+    }
+    
+    // Añadir media estrella si es necesario
+    if (hasHalfStar) {
+      stars.push(<span key="half" className="star half-star">★</span>);
+    }
+    
+    // Añadir estrellas vacías
+    const emptyStars = 5 - Math.ceil(rating);
+    for (let i = 0; i < emptyStars; i++) {
+      stars.push(<span key={`empty-${i}`} className="star empty-star">☆</span>);
+    }
+    
+    return stars;
+  };
+  
+  const formatPrice = (price) => {
+    return price.toLocaleString('en-US');
+  };
+  
   return (
-    <div className="product-detail-container">
-      {/* Breadcrumb */}
-      <nav className="breadcrumb">
-        <Link to="/">Home</Link> &gt; 
-        <Link to="/catalog">Catalog</Link> &gt; 
-        <Link to="/catalog/audemars">Audemars</Link> &gt; 
-        <span>Chronograph Master</span>
-      </nav>
-
-      <div className="product-main">
-        {/* Galería */}
+    <div className="product-detail-page">
+      <Header />
+      
+      <div className="breadcrumb">
+        <span>Home</span> / <span>Watches</span> / <span>{product.brand}</span> / <span>{product.name}</span>
+      </div>
+      
+      <div className="product-container">
         <div className="product-gallery">
-          <img src={product.image} alt={product.name} />
+          <div className="main-image">
+            <img src={product.images[activeImageIndex]} alt={product.name} />
+          </div>
+          
+          <div className="thumbnail-gallery">
+            {product.images.map((image, index) => (
+              <button 
+                key={index} 
+                className={`thumbnail-item ${activeImageIndex === index ? 'active' : ''}`}
+                onClick={() => setActiveImageIndex(index)}
+              >
+                <img src={image} alt={`${product.name} view ${index + 1}`} />
+              </button>
+            ))}
+          </div>
         </div>
-
-        {/* Información */}
-        <div className="product-info">
+        
+        <div className="product-details">
           <h1 className="product-title">{product.name}</h1>
-          <div className="product-brand">{product.brand}</div>
+          <p className="product-brand">{product.brand}</p>
           
           <div className="product-rating">
-            {[...Array(5)].map((_, i) => (
-              <Star key={i} fill={i < Math.floor(product.rating) ? '#FFD700' : 'none'} />
-            ))}
-            <span>({product.reviews} reviews)</span>
+            <div className="stars">{renderStars(product.rating)}</div>
+            <span className="reviews">{product.rating} ({product.reviews} reviews)</span>
           </div>
-
-          <div className="product-price">${product.price.toLocaleString()}</div>
-
+          
+          <div className="product-price">${formatPrice(product.price)}</div>
+          
           <div className="product-description">
             <h3>Description</h3>
             <p>{product.description}</p>
           </div>
-
-          <div className="size-selector">
-            <h3>Size</h3>
+          
+          <div className="product-options">
+            <div className="color-options">
+              <h3>Color</h3>
+              <div className="color-selector">
+                {product.colors.map(color => (
+                  <button 
+                    key={color} 
+                    className={`color-option ${color} ${selectedColor === color ? 'selected' : ''}`}
+                    onClick={() => handleColorSelect(color)}
+                    aria-label={color}
+                  ></button>
+                ))}
+              </div>
+            </div>
+            
             <div className="size-options">
-              {product.sizes.map(size => (
-                <button
-                  key={size}
-                  className={`size-btn ${selectedSize === size ? 'active' : ''}`}
-                  onClick={() => setSelectedSize(size)}
-                >
-                  {size}
-                </button>
-              ))}
+              <h3>Size</h3>
+              <div className="size-selector">
+                {product.sizes.map(size => (
+                  <button 
+                    key={size} 
+                    className={`size-option ${selectedSize === size ? 'selected' : ''}`}
+                    onClick={() => handleSizeSelect(size)}
+                  >
+                    {size}
+                  </button>
+                ))}
+              </div>
             </div>
           </div>
-
-          <button className="add-to-cart-btn">
-            Add to Cart - ${product.price.toLocaleString()}
-          </button>
-
-          <div className="product-meta">
-            <div className="meta-item">
-              <span className="check-icon">✔</span>
-              Free shipping
+          
+          <div className="purchase-options">
+            <div className="quantity-selector">
+              <button className="quantity-btn" onClick={() => handleQuantityChange(-1)}>-</button>
+              <input 
+                type="number" 
+                value={quantity} 
+                onChange={(e) => setQuantity(Math.max(1, parseInt(e.target.value) || 1))}
+                min="1"
+              />
+              <button className="quantity-btn" onClick={() => handleQuantityChange(1)}>+</button>
             </div>
-            <div className="meta-item">
-              <span className="check-icon">✔</span>
-              In stock and ready to ship
-            </div>
-            <div className="meta-item">
-              <span className="check-icon">✔</span>
-              2-year warranty
-            </div>
-            <div className="meta-item">
-              <span className="check-icon">✔</span>
-              30-day returns
-            </div>
+            
+            <button className="add-to-cart-btn">
+              <span className="cart-icon">🛒</span>
+              Add to Cart
+            </button>
+            
+            <button className="wishlist-btn">♡</button>
+            <button className="share-btn">↗</button>
+          </div>
+          
+          <div className="product-features">
+            {product.features.freeShipping && (
+              <div className="feature">Free shipping</div>
+            )}
+            {product.features.warranty && (
+              <div className="feature">{product.features.warranty}</div>
+            )}
+            {product.features.returns && (
+              <div className="feature">{product.features.returns}</div>
+            )}
+          </div>
+          
+          <div className={`stock-status ${product.inStock ? 'in-stock' : 'out-of-stock'}`}>
+            {product.inStock 
+              ? <span>✓ In stock and ready to ship</span> 
+              : <span>Out of stock</span>}
           </div>
         </div>
       </div>

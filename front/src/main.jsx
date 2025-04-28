@@ -8,7 +8,8 @@ import CatalogPage from './pages/CatalogPage'
 import ProductPage from './pages/ProductPage'
 import AboutPage from './pages/AboutPage'
 import ContactPage from './pages/ContactPage'
-import ProductDetail from '@/pages/ProductDetail';
+import ProductListing from './pages/ProductListing';
+import ProductDetail from './pages/ProductDetail';
 import '@/styles/styles.css';
 import '@/styles/components.css';
 import '@/styles/pages.css';
@@ -53,7 +54,11 @@ const router = createBrowserRouter([
         element: <ContactPage />
       },
       {
-        path: '/products/:id',
+        path: "/productlisting" ,
+        element: <ProductListing />
+      },
+      {
+        path: "/productdetail/:id",
         element: <ProductDetail />
       }
     ]

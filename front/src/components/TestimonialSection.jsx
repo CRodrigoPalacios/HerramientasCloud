@@ -1,47 +1,144 @@
+import { useState, useEffect } from 'react';
+import '@/styles/components/TestimonialSection.css';
+import { Star, Quote } from 'lucide-react';
+
 export default function TestimonialSection() {
-    const testimonials = [
-      {
-        quote: "The perfect addition to my collection. The craftsmanship is unparalleled.",
-        author: "Michael Chen",
-        role: "Watch Collector"
-      },
-      {
-        quote: "Exceptional service and an incredible selection. My go-to for luxury timepieces.",
-        author: "Sarah Johnson",
-        role: "Luxury Enthusiast"
-      },
-      {
-        quote: "The attention to detail in every piece is truly remarkable. Highly recommended!",
-        author: "David Martinez",
-        role: "Investor"
-      }
-    ];
+  const [activeIndex, setActiveIndex] = useState(0);
   
-    return (
-      <section className="bg-gray-100 py-12 md:py-24 lg:py-32 dark:bg-gray-800">
-        <div className="container px-4 md:px-6">
-          <div className="flex flex-col items-center justify-center space-y-4 text-center">
-            <div className="space-y-2">
-              <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">Client Testimonials</h2>
-              <p className="max-w-[900px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                What our clients say about us
-              </p>
-            </div>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
+  const testimonials = [
+    {
+      quote: "La precisión y el acabado del Patek Philippe que adquirí superó todas mis expectativas. Una verdadera obra maestra de relojería que ahora es el centro de mi colección.",
+      author: "Michael Chen",
+      role: "Coleccionista",
+      rating: 5,
+      image: "/assets/testimonial-1.jpg" // Ruta a la imagen del cliente (opcional)
+    },
+    {
+      quote: "El servicio personalizado y la selección de piezas exclusivas hacen que Luxury Watches sea mi destino predilecto para adquirir relojes de alta gama. Su asesoramiento experto es invaluable.",
+      author: "Sarah Johnson",
+      role: "Connoisseur de Lujo",
+      rating: 5,
+      image: "/assets/testimonial-2.jpg"
+    },
+    {
+      quote: "La atención meticulosa a cada detalle, desde el momento de la compra hasta el servicio post-venta, refleja el compromiso con la excelencia que caracteriza a esta boutique.",
+      author: "David Martinez",
+      role: "Inversor",
+      rating: 5,
+      image: "/assets/testimonial-3.jpg"
+    },
+    {
+      quote: "Mi Audemars Piguet adquirido aquí no es simplemente un reloj, es una herencia familiar que transmitirá elegancia y prestigio por generaciones. Una inversión impecable.",
+      author: "Alexandra Dubois",
+      role: "Directora Ejecutiva",
+      rating: 5,
+      image: "/assets/testimonial-4.jpg"
+    }
+  ];
+
+  // Avanzar automáticamente los testimonios cada 5 segundos
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveIndex((current) => 
+        current === testimonials.length - 1 ? 0 : current + 1
+      );
+    }, 5000);
+    
+    return () => clearInterval(interval);
+  }, [testimonials.length]);
+
+  // Navegar a un testimonio específico
+  const goToTestimonial = (index) => {
+    setActiveIndex(index);
+  };
+
+  // Ir al testimonio anterior
+  const prevTestimonial = () => {
+    setActiveIndex((current) => 
+      current === 0 ? testimonials.length - 1 : current - 1
+    );
+  };
+
+  // Ir al siguiente testimonio
+  const nextTestimonial = () => {
+    setActiveIndex((current) => 
+      current === testimonials.length - 1 ? 0 : current + 1
+    );
+  };
+
+  return (
+    <section className="testimonials-section">
+      <div className="testimonials-background"></div>
+      <div className="testimonials-container">
+        <div className="testimonials-header">
+          <span className="section-label">Experiencias</span>
+          <h2 className="testimonials-title">Lo que dicen nuestros clientes</h2>
+          <div className="title-underline"></div>
+          <p className="testimonials-subtitle">
+            Descubra por qué coleccionistas y entusiastas confían en nuestra expertise
+          </p>
+        </div>
+        
+        <div className="testimonials-slider">
+          <div className="testimonials-wrapper" style={{ transform: `translateX(-${activeIndex * 100}%)` }}>
             {testimonials.map((testimonial, index) => (
-              <div key={index} className="p-6 bg-white rounded-lg shadow-lg dark:bg-gray-900">
-                <blockquote className="text-gray-600 dark:text-gray-300">
-                  "{testimonial.quote}"
-                </blockquote>
-                <div className="mt-4">
-                  <p className="font-semibold">{testimonial.author}</p>
-                  <p className="text-sm text-gray-500">{testimonial.role}</p>
+              <div key={index} className="testimonial-slide">
+                <div className="testimonial-card">
+                  <div className="quote-icon">
+                    <Quote size={32} strokeWidth={1} />
+                  </div>
+                  
+                  <blockquote className="testimonial-quote">
+                    {testimonial.quote}
+                  </blockquote>
+                  
+                  <div className="testimonial-rating">
+                    {[...Array(5)].map((_, i) => (
+                      <Star 
+                        key={i} 
+                        size={16} 
+                        fill={i < testimonial.rating ? "#c9a74d" : "none"} 
+                        stroke={i < testimonial.rating ? "#c9a74d" : "#cbd5e1"} 
+                        strokeWidth={1.5}
+                      />
+                    ))}
+                  </div>
+                  
+                  <div className="testimonial-info">
+                    {testimonial.image && (
+                      <div className="testimonial-image-container">
+                        <div className="testimonial-image" style={{ backgroundImage: `url(${testimonial.image})` }}></div>
+                      </div>
+                    )}
+                    <div className="testimonial-author-info">
+                      <p className="testimonial-author">{testimonial.author}</p>
+                      <p className="testimonial-role">{testimonial.role}</p>
+                    </div>
+                  </div>
                 </div>
               </div>
             ))}
           </div>
+          
+          <div className="testimonial-controls">
+            <button className="control-btn prev-btn" onClick={prevTestimonial}>
+              &#8592;
+            </button>
+            <div className="testimonial-dots">
+              {testimonials.map((_, index) => (
+                <button 
+                  key={index}
+                  className={`dot-indicator ${activeIndex === index ? 'active' : ''}`}
+                  onClick={() => goToTestimonial(index)}
+                />
+              ))}
+            </div>
+            <button className="control-btn next-btn" onClick={nextTestimonial}>
+              &#8594;
+            </button>
+          </div>
         </div>
-      </section>
-    );
-  }
+      </div>
+    </section>
+  );
+}
