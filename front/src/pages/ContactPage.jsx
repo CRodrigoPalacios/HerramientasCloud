@@ -1,47 +1,34 @@
-import { Button } from "@/components/ui/button";
+import '../styles/pages/Contact.css';
 
 export default function ContactPage() {
   return (
-    <div className="container px-4 py-12 md:py-24">
-      <div className="max-w-2xl mx-auto space-y-8">
-        <div className="space-y-2 text-center">
-          <h1 className="text-4xl font-bold">Contact Us</h1>
-          <p className="text-gray-500">
-            Have questions? Our team is here to help.
-          </p>
+    <div className="contact-page container">
+      <div className="contact-header">
+        <h1 className="contact-title">Contact Us</h1>
+      </div>
+      
+      <form className="contact-form">
+        <div className="form-group">
+          <label className="form-label">Name</label>
+          <input type="text" className="form-input" />
         </div>
         
-        <form className="space-y-4">
-          <div className="space-y-2">
-            <label className="block text-sm font-medium">Name</label>
-            <input
-              type="text"
-              className="w-full px-3 py-2 border rounded-md"
-              placeholder="Enter your name"
-            />
-          </div>
-          
-          <div className="space-y-2">
-            <label className="block text-sm font-medium">Email</label>
-            <input
-              type="email"
-              className="w-full px-3 py-2 border rounded-md"
-              placeholder="Enter your email"
-            />
-          </div>
-          
-          <div className="space-y-2">
-            <label className="block text-sm font-medium">Message</label>
-            <textarea
-              className="w-full px-3 py-2 border rounded-md min-h-[150px]"
-              placeholder="Enter your message"
-            />
-          </div>
-          
-          <Button className="w-full" type="submit">
-            Send Message
-          </Button>
-        </form>
+        <div className="form-group">
+          <label className="form-label">Email</label>
+          <input type="email" className="form-input" />
+        </div>
+        
+        <div className="form-group">
+          <label className="form-label">Message</label>
+          <textarea className="form-input"></textarea>
+        </div>
+        
+        <button type="submit" className="submit-btn">Send Message</button>
+      </form>
+      
+      <div className="contact-info">
+        <div className="info-item">✉️ contact@luxurywatches.com</div>
+        <div className="info-item">📞 +1 (555) 123-4567</div>
       </div>
     </div>
   );

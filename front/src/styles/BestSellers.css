@@ -1,0 +1,94 @@
+/* Best Sellers */
+.best-sellers {
+    padding: 4rem 2rem;
+    background-color: #f8fafc;
+  }
+  
+  .section-title {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .section-subtitle {
+    text-align: center;
+    color: #666;
+    margin-bottom: 3rem;
+  }
+  
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .product-card {
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    position: relative;
+  }
+  
+  .new-badge {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    background: #2563eb;
+    color: white;
+    padding: 0.25rem 1rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+  }
+  
+  .product-image {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+  }
+  
+  .product-info {
+    padding: 1.5rem;
+  }
+  
+  .product-brand {
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .product-name {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .product-price {
+    color: #10b981;
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+  
+  .product-rating {
+    color: #f59e0b;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+  }
+  
+  .view-details-btn {
+    width: 100%;
+    padding: 0.8rem;
+    background: none;
+    border: 2px solid #2563eb;
+    color: #2563eb;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  
+  .view-details-btn:hover {
+    background-color: #2563eb;
+    color: white;
+  }

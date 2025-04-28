@@ -8,7 +8,11 @@ import CatalogPage from './pages/CatalogPage'
 import ProductPage from './pages/ProductPage'
 import AboutPage from './pages/AboutPage'
 import ContactPage from './pages/ContactPage'
+import ProductDetail from '@/pages/ProductDetail';
 import '@/styles/styles.css';
+import '@/styles/components.css';
+import '@/styles/pages.css';
+import '@/styles/animations.css';
 
 const AppLayout = () => (
   <div className="flex flex-col min-h-screen">
@@ -47,6 +51,10 @@ const router = createBrowserRouter([
       {
         path: "/contact",
         element: <ContactPage />
+      },
+      {
+        path: '/products/:id',
+        element: <ProductDetail />
       }
     ]
   }
