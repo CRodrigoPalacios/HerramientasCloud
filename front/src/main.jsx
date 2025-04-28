@@ -8,6 +8,7 @@ import CatalogPage from './pages/CatalogPage'
 import ProductPage from './pages/ProductPage'
 import AboutPage from './pages/AboutPage'
 import ContactPage from './pages/ContactPage'
+import Brands from './pages/Brands'
 import ProductListing from './pages/ProductListing';
 import ProductDetail from './pages/ProductDetail';
 import '@/styles/styles.css';
@@ -60,6 +61,10 @@ const router = createBrowserRouter([
       {
         path: "/productdetail/:id",
         element: <ProductDetail />
+      },
+      {
+        path: "/brands",
+        element: <Brands />
       }
     ]
   }

@@ -88,14 +88,18 @@
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
   position: relative;
   max-width: 800px;
+  height: 400px;
   margin: 0 auto;
   border: 1px solid rgba(0, 0, 0, 0.05);
+  
+  display: flex;         /* <--- lo hacemos flex */
+  flex-direction: column;
+  justify-content: left; /* <--- centramos verticalmente */
+  align-items: left;    /* <--- opcional, centra horizontal también */
+  text-align: left;     /* <--- opcional, centra texto si quieres */
 }
 
 .quote-icon {
-  position: absolute;
-  top: -15px;
-  left: 30px;
   background-color: #c9a74d;
   color: white;
   width: 40px;
@@ -104,7 +108,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-bottom: 1rem; /* separa del quote */
 }
+
 
 .testimonial-quote {
   color: #333;

@@ -1,0 +1,61 @@
+.brands-page {
+    padding: 5rem 2rem;
+    min-height: 100vh;
+    color: var(--text-light);
+  }
+  
+  .brands-title {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+    font-weight: 700;
+    color: #000000;
+  }
+  
+  .brands-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Siempre 3 columnas */
+    gap: 2rem;
+  }
+  
+  .brand-card {
+    background: #1f1f1f;
+    border-radius: 1.5rem;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    height: 300px;
+  }
+  
+  .brand-card-inner {
+    padding: 2rem;
+    text-align: center;
+  }
+  
+  .brand-logo {
+    height: 80px;
+    object-fit: contain;
+    margin-bottom: 1.5rem;
+  }
+  
+  .brand-name {
+    font-size: 1.25rem;
+    color: #e0e0e0;
+  }
+  
+  .brand-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(255, 255, 255, 0.1);
+  }
+  
+@media (max-width: 900px) {
+    .brands-grid {
+      grid-template-columns: repeat(2, 1fr); /* 2 columnas en pantallas medianas */
+    }
+  }
+  
+  @media (max-width: 600px) {
+    .brands-grid {
+      grid-template-columns: 1fr; /* 1 columna en móviles */
+    }
+  }
