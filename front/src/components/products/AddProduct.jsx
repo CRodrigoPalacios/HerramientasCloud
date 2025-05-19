@@ -9,8 +9,6 @@ export default function AddProduct() {
     description: '',
     type: '',
     material: '',
-    rating: '',
-    reviews: ''
   });
 
   const [image, setImage] = useState(null);
@@ -43,10 +41,10 @@ export default function AddProduct() {
     <div className="admin-form">
       <h2>Agregar Producto</h2>
       <form onSubmit={handleSubmit}>
-        {['name', 'brand', 'price', 'description', 'type', 'material', 'rating', 'reviews'].map(field => (
+        {['name', 'brand', 'price', 'description', 'type', 'material'].map(field => (
           <input
             key={field}
-            type={field === 'price' || field === 'rating' || field === 'reviews' ? 'number' : 'text'}
+            type={field === 'price'  ? 'number' : 'text'}
             name={field}
             placeholder={field.charAt(0).toUpperCase() + field.slice(1)}
             value={product[field]}
