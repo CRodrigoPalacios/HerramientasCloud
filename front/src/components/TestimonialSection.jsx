@@ -11,7 +11,7 @@ export default function TestimonialSection() {
       author: "Michael Chen",
       role: "Coleccionista",
       rating: 5,
-      image: "/assets/testimonial-1.jpg" // Ruta a la imagen del cliente (opcional)
+      image: "/assets/testimonial-1.jpg" 
     },
     {
       quote: "El servicio personalizado y la selección de piezas exclusivas hacen que Luxury Watches sea mi destino predilecto para adquirir relojes de alta gama. Su asesoramiento experto es invaluable.",
@@ -36,7 +36,6 @@ export default function TestimonialSection() {
     }
   ];
 
-  // Avanzar automáticamente los testimonios cada 5 segundos
   useEffect(() => {
     const interval = setInterval(() => {
       setActiveIndex((current) => 
@@ -47,19 +46,16 @@ export default function TestimonialSection() {
     return () => clearInterval(interval);
   }, [testimonials.length]);
 
-  // Navegar a un testimonio específico
   const goToTestimonial = (index) => {
     setActiveIndex(index);
   };
 
-  // Ir al testimonio anterior
   const prevTestimonial = () => {
     setActiveIndex((current) => 
       current === 0 ? testimonials.length - 1 : current - 1
     );
   };
 
-  // Ir al siguiente testimonio
   const nextTestimonial = () => {
     setActiveIndex((current) => 
       current === testimonials.length - 1 ? 0 : current + 1
