@@ -1,0 +1,72 @@
+.admin-form, .admin-table {
+  padding: 2rem;
+  max-width: 700px;
+  margin: auto;
+}
+
+.admin-form input,
+.admin-form button {
+  display: block;
+  width: 100%;
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+}
+
+.admin-table table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+.admin-table th, .admin-table td {
+  padding: 0.5rem;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+.admin-table select {
+  padding: 0.3rem;
+}
+
+
+
+.admin-table {
+  padding: 2rem;
+  background-color: #f9f9f9;
+}
+
+.admin-table h2 {
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.admin-table table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.admin-table th,
+.admin-table td {
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+.admin-table th {
+  background-color: #4a90e2;
+  color: #fff;
+}
+
+.admin-table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.admin-table select {
+  padding: 0.4rem;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  cursor: pointer;
+}
