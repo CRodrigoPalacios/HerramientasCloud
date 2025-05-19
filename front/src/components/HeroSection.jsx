@@ -2,16 +2,14 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "@/styles/components/Hero.css";
 
-// Importa tus imágenes de alta calidad
 import backgroundImage1 from "../assets/fondoreloj1.jpg";
-import backgroundImage2 from "../assets/fondoreloj2.jpg"; // Asegúrate de tener esta imagen
-import backgroundImage3 from "../assets/fondoreloj3.jpg"; // Asegúrate de tener esta imagen
+import backgroundImage2 from "../assets/fondoreloj2.jpg";
+import backgroundImage3 from "../assets/fondoreloj3.jpg"; 
 
 export default function HeroSection() {
   const images = [backgroundImage1, backgroundImage2, backgroundImage3];
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-  // Cambiar la imagen cada 5 segundos
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentImageIndex((prevIndex) => 
@@ -22,14 +20,12 @@ export default function HeroSection() {
     return () => clearInterval(interval);
   }, [images.length]);
 
-  // Función para cambiar a la imagen anterior
   const prevImage = () => {
     setCurrentImageIndex((prevIndex) => 
       prevIndex === 0 ? images.length - 1 : prevIndex - 1
     );
   };
 
-  // Función para cambiar a la imagen siguiente
   const nextImage = () => {
     setCurrentImageIndex((prevIndex) => 
       prevIndex === images.length - 1 ? 0 : prevIndex + 1
