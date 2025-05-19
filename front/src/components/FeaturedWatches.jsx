@@ -1,4 +1,4 @@
-// FeaturedWatches.jsx
+
 import '@/styles/components/FeaturedWatches.css';
 
 export default function FeaturedWatches() {
@@ -11,7 +11,7 @@ export default function FeaturedWatches() {
             Explore our curated selection of exceptional timepieces
           </p>
         </div>
-        {/* Agregar grid de productos aquí */}
+        {}
       </div>
     </section>
   );
