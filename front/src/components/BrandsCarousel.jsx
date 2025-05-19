@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import "@/styles/components/BrandsCarousel.css"; // Importamos el CSS
+import "@/styles/components/BrandsCarousel.css";
 
 const logos = [
   "src/assets/relojes/rolex.png",
@@ -18,7 +18,7 @@ export default function BrandsCarousel() {
     if (!container) return;
 
     let scrollAmount = 0;
-    const speed = 1; // velocidad de movimiento
+    const speed = 1;
 
     const scroll = () => {
       if (container.scrollLeft >= container.scrollWidth / 2) {
