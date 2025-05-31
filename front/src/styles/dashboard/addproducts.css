@@ -1,0 +1,64 @@
+.admin-form {
+  max-width: 500px;
+  margin: 40px auto;
+  padding: 30px;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.admin-form h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 28px;
+  color: #333333;
+}
+
+.admin-form form {
+  display: flex;
+  flex-direction: column;
+}
+
+.admin-form input[type="text"],
+.admin-form input[type="number"],
+.admin-form input[type="file"] {
+  padding: 12px;
+  margin-bottom: 16px;
+  border: 1px solid #dddddd;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: border-color 0.3s ease;
+}
+
+.admin-form input[type="text"]:focus,
+.admin-form input[type="number"]:focus {
+  border-color: #6c63ff;
+  outline: none;
+}
+
+.admin-form button {
+  padding: 12px;
+  background: #6c63ff;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.admin-form button:hover {
+  background: #5548c8;
+}
+
+.admin-form p {
+  margin-top: 16px;
+  text-align: center;
+  font-size: 14px;
+  color: #28a745;
+}
+
+.admin-form p.error {
+  color: #dc3545;
+}

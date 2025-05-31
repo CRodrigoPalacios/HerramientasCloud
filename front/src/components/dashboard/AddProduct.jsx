@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import '@/styles/dashboard/admin.css';
+import '@/styles/dashboard/addproducts.css';
 
 export default function AddProduct({ onProductAdded }) {
   const [product, setProduct] = useState({

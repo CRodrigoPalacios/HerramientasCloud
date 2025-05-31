@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import '@/styles/dashboard/productList.css';
+
 
 export default function ProductList() {
   const [products, setProducts] = useState([]);

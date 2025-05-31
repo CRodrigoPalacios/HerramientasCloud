@@ -17,6 +17,7 @@ import Dashboard from './pages/Dashboard';
 import ProtectedRoute from './components/ProtectedRoute';
 import { AuthProvider } from './context/AuthContext';
 import UserList from './pages/dashboard/UserListPage';
+import AdminProductsPage from './pages/dashboard/AdminProductsPage';
 
 import '@/styles/styles.css';
 import '@/styles/components.css';
@@ -65,8 +66,15 @@ const router = createBrowserRouter([
             <UserList />
           </ProtectedRoute>
         )
+      },
+      {
+        path: "/dashboard/AdminProducts",
+        element: (
+          <ProtectedRoute allowedRoles={["admin"]}>
+            <AdminProductsPage />
+          </ProtectedRoute>
+        )
       }
-
     ]
   }
 ]);

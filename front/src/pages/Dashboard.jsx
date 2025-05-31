@@ -1,5 +1,5 @@
 import React from 'react';
-import AddProduct from '../components/products/AddProduct';
+import AddProduct from '../components/dashboard/AddProduct';
 import UserList from '../components/dashboard/UserList';
 import ProductList from '../components/dashboard/ProductList';
 
