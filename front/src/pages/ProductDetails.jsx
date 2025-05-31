@@ -7,7 +7,7 @@ export default function ProductDetails() {
   const [product, setProduct] = useState(null);
 
   useEffect(() => {
-    fetch(`http://localhost:3001/api/products/${id}`)
+    fetch(`http://localhost:5000/api/products/${id}`)
       .then(res => res.json())
       .then(data => setProduct(data));
   }, [id]);
@@ -24,16 +24,21 @@ export default function ProductDetails() {
         />
       </div>
       <div className="product-info-section">
-        <h2 className="product-title">{product.name}</h2>
-        <p><strong>Marca:</strong> {product.brand}</p>
-        <p className="product-price">${product.price}</p>
-        <p><strong>Material:</strong> {product.material}</p>
-        <p><strong>Tipo:</strong> {product.type}</p>
-        <p><strong>Rating:</strong> ⭐ {product.rating}</p>
-        <p><strong>Reseñas:</strong> {product.reviews}</p>
-        <Link to="/catalog">
-          <button className="back-button">← Volver al Catálogo</button>
-        </Link>
+        <div>
+          <h2 className="product-title">{product.name}</h2>
+          <p><strong>Marca:</strong> {product.brand}</p>
+          <p className="product-price">${product.price.toFixed(2)}</p>
+          <p><strong>Material:</strong> {product.material}</p>
+          <p><strong>Tipo:</strong> {product.type}</p>
+          <p><strong>Rating:</strong> ⭐ {product.rating}</p>
+          <p><strong>Reseñas:</strong> {product.reviews}</p>
+        </div>
+        <div style={{ marginTop: '2rem', display: 'flex', gap: '1rem' }}>
+          <button className="buy-button">🛒 Comprar</button>
+          <Link to="/catalog">
+            <button className="back-button">← Volver al Catálogo</button>
+          </Link>
+        </div>
       </div>
     </div>
   );
