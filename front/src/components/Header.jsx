@@ -46,11 +46,26 @@ export default function Header() {
             <Link to="/brands" className="nav-link">Marcas</Link>
             <Link to="/about" className="nav-link">Historia</Link>
             <Link to="/contact" className="nav-link">Contacto</Link>
-            
-          {user && user.role === 'admin' && ( 
-            <Link to="/dashboard" className="nav-link">Dashboard</Link>
+
+            {user && user.role === 'admin' && (
+              <select
+                className="nav-select"
+                onChange={(e) => {
+                  const selectedPage = e.target.value;
+                  if (selectedPage) {
+                    window.location.href = selectedPage;
+                  }
+                }}
+              >
+                <option value="">Admin Panel</option>
+                <option value="/dashboard">Dashboard</option>
+                <option value="/dashboard/UserList">Administrar Usuarios</option>
+                <option value="/dashboard/AddProducts">Añadir Productos</option>
+                <option value="/dashboard/Settings">Configuración</option>
+              </select>
             )}
           </nav>
+
         </div>
 
         <div className="header-right">

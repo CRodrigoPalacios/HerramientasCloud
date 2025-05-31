@@ -8,8 +8,7 @@ export default function NewsletterSection() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle subscription logic
-    console.log("Subscribed with:", email);
+    console.log("Suscrito con:", email);
     setEmail("");
   };
 
@@ -17,21 +16,24 @@ export default function NewsletterSection() {
     <section className="newsletter-section">
       <div className="newsletter-container">
         <div className="newsletter-header">
-          <h2 className="newsletter-title">Join Our Newsletter</h2>
+          <h2 className="newsletter-title">Únete a Nuestro Boletín</h2>
           <p className="newsletter-subtitle">
-            Stay updated with our latest collections and exclusive offers
+             Mantente al día con nuestras últimas colecciones y ofertas exclusivas
           </p>
         </div>
         <form className="newsletter-form" onSubmit={handleSubmit}>
           <input
             type="email"
             className="newsletter-input"
-            // ... resto de props
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="Ingresa tu correo electrónico"
+            required
           />
           <Button type="submit">Subscribe</Button>
         </form>
         <p className="newsletter-terms">
-          By subscribing, you agree to our terms and privacy policy.
+          Al suscribirte, aceptas nuestros términos y política de privacidad.
         </p>
       </div>
     </section>

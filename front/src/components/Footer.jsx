@@ -8,34 +8,34 @@ const Footer = () => {
       <div className="container">
         <div className="footer-content">
           <div className="footer-section">
-            <h4>Customer Service</h4>
+            <h4>Servicio al Cliente</h4>
             <ul className="footer-links">
-              <li><Link to="/contact">Contact Us</Link></li>
-              <li><Link to="/shipping">Shipping Policy</Link></li>
-              <li><Link to="/returns">Returns & Exchanges</Link></li>
+              <li><Link to="/contact">Contáctanos</Link></li>
+              <li><Link to="/shipping">Política de Envíos</Link></li>
+              <li><Link to="/returns">Devoluciones y Cambios</Link></li>
             </ul>
           </div>
 
           <div className="footer-section">
-            <h4>Company</h4>
+            <h4>Compañía</h4>
             <ul className="footer-links">
-              <li><Link to="/about">About Us</Link></li>
+              <li><Link to="/about">Sobre Nosotros</Link></li>
               <li><Link to="/blog">Blog</Link></li>
-              <li><Link to="/careers">Careers</Link></li>
+              <li><Link to="/careers">Empleos</Link></li>
             </ul>
           </div>
 
           <div className="footer-section">
             <h4>Legal</h4>
             <ul className="footer-links">
-              <li><Link to="/privacy">Privacy Policy</Link></li>
-              <li><Link to="/terms">Terms of Service</Link></li>
-              <li><Link to="/warranty">Warranty</Link></li>
+              <li><Link to="/privacy">Política de Privacidad</Link></li>
+              <li><Link to="/terms">Términos de Servicio</Link></li>
+              <li><Link to="/warranty">Garantía</Link></li>
             </ul>
           </div>
 
           <div className="footer-section">
-            <h4>Connect With Us</h4>
+            <h4>Conéctate con Nosotros</h4>
             <div className="social-links">
               <a href="#" aria-label="Facebook">
                 <Facebook className="social-icon" size={20} />
@@ -51,7 +51,7 @@ const Footer = () => {
         </div>
 
         <div className="footer-bottom">
-          <p>&copy; {new Date().getFullYear()} LuxuryStore. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} LuxuryStore. Todos los derechos reservados.</p>
         </div>
       </div>
     </footer>

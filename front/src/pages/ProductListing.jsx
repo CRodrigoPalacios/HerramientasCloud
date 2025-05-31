@@ -8,7 +8,6 @@ const ProductListing = () => {
   const [productList, setProductList] = useState([]);
   
   useEffect(() => {
-    // Simulando una carga de datos desde una API
     setProductList(products);
   }, []);
   
