@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import '@/styles/dashboard/admin.css';
 
-export default function AddProduct() {
+export default function AddProduct({ onProductAdded }) {
   const [product, setProduct] = useState({
     name: '',
     brand: '',
@@ -28,13 +28,20 @@ export default function AddProduct() {
     Object.entries(product).forEach(([key, value]) => formData.append(key, value));
     if (image) formData.append('image', image);
 
-    const response = await fetch('http://localhost:3001/api/products', {
+    const response = await fetch('http://localhost:5000/api/products', {
       method: 'POST',
       body: formData
     });
 
     const data = await response.json();
-    setMessage(response.ok ? 'Producto agregado con éxito' : data.message || 'Error al agregar producto');
+    if (response.ok) {
+      setMessage('Producto agregado con éxito');
+      setProduct({ name: '', brand: '', price: '', description: '', type: '', material: '' });
+      setImage(null);
+      onProductAdded(); // refrescar lista
+    } else {
+      setMessage(data.message || 'Error al agregar producto');
+    }
   };
 
   return (
