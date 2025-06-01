@@ -18,10 +18,10 @@ export default function ProductDetails() {
     <div className="product-details-container">
       <div className="product-image-section">
         <img
-          src={product.image}
-          alt={product.name}
-          className="product-image"
-        />
+        src={`http://localhost:5000/uploads/${product.image}`}
+        alt={product.name}
+        className="product-image"
+      />
       </div>
       <div className="product-info-section">
         <div>

@@ -58,7 +58,6 @@ export default function Header() {
                 }}
               >
                 <option value="">Admin Panel</option>
-                <option value="/dashboard">Dashboard</option>
                 <option value="/dashboard/UserList">Administrar Usuarios</option>
                 <option value="/dashboard/AdminProducts">Añadir Productos</option>
                 <option value="/dashboard/Settings">Configuración</option>
