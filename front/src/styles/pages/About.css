@@ -1,57 +1,101 @@
+/* Variables de colores para lujo */
+:root {
+  --primary-color: #1b1b1b;       /* Negro oscuro */
+  --secondary-color: #555555;     /* Gris medio */
+  --accent-color: #bfa054;        /* Dorado */
+  --background-color: #faf9f6;    /* Beige claro */
+  --card-background: #ffffff;     /* Blanco para las tarjetas */
+  --shadow-color: rgba(0, 0, 0, 0.1);
+}
+
 /* About Page */
 .about-page {
-    padding: 4rem 0;
-  }
-  
-  .about-header {
-    text-align: center;
-    margin-bottom: 4rem;
-  }
-  
-  .about-title {
-    font-size: 2.5rem;
-    color: var(--primary-color);
-    margin-bottom: 1rem;
-  }
-  
-  .about-content {
-    max-width: 800px;
-    margin: 0 auto;
-    line-height: 1.6;
-  }
-  
-  .about-section {
-    margin-bottom: 3rem;
-  }
-  
-  .about-section h2 {
-    color: var(--primary-color);
-    margin-bottom: 1rem;
-    font-size: 1.5rem;
-  }
-  
-  .about-section p {
-    color: var(--secondary-color);
-    margin-bottom: 1.5rem;
-  }
-  
-  .values-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
-    margin-top: 2rem;
-  }
-  
-  .value-card {
-    text-align: center;
-    padding: 2rem;
-    background: white;
-    border-radius: 0.5rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-  }
-  
-  .value-icon {
-    font-size: 2rem;
-    color: var(--accent-color);
-    margin-bottom: 1rem;
-  }
+  padding: 5rem 1rem;
+  background-color: var(--background-color);
+  font-family: 'Georgia', serif;
+  color: var(--primary-color);
+}
+
+.about-header {
+  text-align: center;
+  margin-bottom: 5rem;
+}
+
+.about-title {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  letter-spacing: 2px;
+  color: var(--primary-color);
+  text-transform: uppercase;
+}
+
+.about-subtitle {
+  font-size: 1.25rem;
+  font-style: italic;
+  color: var(--accent-color);
+}
+
+.about-content {
+  max-width: 900px;
+  margin: 0 auto;
+  line-height: 1.8;
+}
+
+.about-section {
+  margin-bottom: 4rem;
+}
+
+.about-section h2 {
+  color: var(--primary-color);
+  font-size: 2rem;
+  margin-bottom: 1.25rem;
+  border-bottom: 3px solid var(--accent-color);
+  display: inline-block;
+  padding-bottom: 0.3rem;
+}
+
+.about-section p {
+  color: var(--secondary-color);
+  font-size: 1.125rem;
+}
+
+.values-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2.5rem;
+  margin-top: 2rem;
+}
+
+.value-card {
+  background: var(--card-background);
+  padding: 2rem 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px var(--shadow-color);
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: default;
+}
+
+.value-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 14px 30px var(--shadow-color);
+}
+
+.value-icon {
+  font-size: 3rem;
+  color: var(--accent-color);
+  margin-bottom: 1rem;
+}
+
+.value-card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 0.75rem;
+  color: var(--primary-color);
+  font-weight: 600;
+}
+
+.value-card p {
+  color: var(--secondary-color);
+  font-size: 1rem;
+}

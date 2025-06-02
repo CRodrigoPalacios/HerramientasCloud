@@ -1,78 +1,94 @@
-import { Link } from 'react-router-dom';
-import { useCart } from '../context/CartContext';
-import { Button } from '@/components/ui/button';
+import { Link } from "react-router-dom";
+import { useCart } from "../context/CartContext";
+import { ItemsCarrito } from "../components/ItemsCarrito.jsx";
+import { FormularioCodigoPromo } from "../components/FormularioCodigoPromo.jsx";
+import { ShoppingCart, ArrowRight } from "lucide-react";
+import '../styles/pages/CartPage.css';
 
 export default function CartPage() {
   const { cartItems, dispatch } = useCart();
 
-  const total = cartItems.reduce((acc, item) => 
-    acc + (item.price * item.quantity), 0
-  );
+  const subtotal = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
+  const envio = 0;
+  const impuestos = subtotal * 0.07;
+  const total = subtotal + envio + impuestos;
+
+  const carrito = { items: cartItems, subtotal, envio, impuestos, total };
+  const cargando = false;
+
+  if (cargando) {
+    return <div className="container">Cargando carrito...</div>;
+  }
 
   return (
-    <div className="container px-4 py-12 md:py-24">
-      <h1 className="text-3xl font-bold mb-8">Your Cart</h1>
-      
-      {cartItems.length === 0 ? (
-        <div className="text-center space-y-4">
-          <p className="text-gray-500">Your cart is empty</p>
-          <Button asChild>
-            <Link to="/catalog">Continue Shopping</Link>
-          </Button>
-        </div>
-      ) : (
-        <div className="grid md:grid-cols-3 gap-8">
-          <div className="md:col-span-2 space-y-4">
-            {cartItems.map(item => (
-              <div key={item.id} className="flex gap-4 border-b pb-4">
-                <img 
-                  src={item.image} 
-                  alt={item.name} 
-                  className="w-24 h-24 object-cover"
-                />
-                <div className="flex-1">
-                  <h3 className="font-semibold">{item.name}</h3>
-                  <p>${item.price}</p>
-                  <div className="flex items-center gap-2 mt-2">
-                    <input
-                      type="number"
-                      value={item.quantity}
-                      onChange={(e) => dispatch({
-                        type: 'UPDATE_QUANTITY',
-                        payload: { id: item.id, quantity: parseInt(e.target.value) }
-                      })}
-                      className="w-16 px-2 py-1 border rounded"
-                    />
-                    <Button 
-                      variant="destructive"
-                      onClick={() => dispatch({ type: 'REMOVE_ITEM', payload: item.id })}
-                    >
-                      Remove
-                    </Button>
-                  </div>
-                </div>
-              </div>
-            ))}
+    <div className="container">
+      <div className="cart-layout">
+  <div className="cart-items">
+    <div className="card">
+      <div className="card-header">
+        <h1 className="card-title">Carrito de Compras</h1>
+        <p className="text-muted">Revisa y modifica tus artículos antes de finalizar la compra</p>
+      </div>
+      <div className="card-content">
+        <h2 className="card-title">Artículos en el Carrito ({carrito.items.length})</h2>
+        <ItemsCarrito items={carrito.items} dispatch={dispatch} />
+      </div>
+    </div>
+  </div>
+
+  <div className="cart-summary">
+  <div className="card">
+    <div className="card-header">
+      <h2 className="card-title">Resumen del Pedido</h2>
+    </div>
+    <div className="card-content">
+      <div className="summary-item">
+        <span className="text-muted">Subtotal</span>
+        <span>${carrito.subtotal.toFixed(2)}</span>
+      </div>
+      <div className="summary-item">
+        <span className="text-muted">Envío</span>
+        <span>{carrito.envio === 0 ? "Gratis" : `$${carrito.envio.toFixed(2)}`}</span>
+      </div>
+      <div className="summary-item">
+        <span className="text-muted">Impuestos (7%)</span>
+        <span>${carrito.impuestos.toFixed(2)}</span>
+      </div>
+      <div className="summary-item total">
+        <span>Total</span>
+        <span>${carrito.total.toFixed(2)}</span>
+      </div>
+
+      {/* Agregamos aquí el formulario del código promocional */}
+      <div style={{ marginTop: "1.5rem" }}>
+        <FormularioCodigoPromo />
+      </div>
+    </div>
+
+    <div className="card-footer">
+      <Link to="/checkout" className="button">
+        Proceder al Pago <ArrowRight style={{ marginLeft: '0.5rem' }} size={16} />
+      </Link>
+    </div>
+  </div>
+</div>
+
+</div>
+
+
+      {carrito.items.length === 0 && (
+        <div className="empty-cart">
+          <div className="empty-icon">
+            <ShoppingCart size={32} color="#6b7280" />
           </div>
-          
-          <div className="bg-gray-50 p-6 rounded-lg h-fit sticky top-8">
-            <h2 className="text-xl font-bold mb-4">Order Summary</h2>
-            <div className="space-y-2">
-              <div className="flex justify-between">
-                <span>Subtotal</span>
-                <span>${total.toFixed(2)}</span>
-              </div>
-              <div className="flex justify-between">
-                <span>Shipping</span>
-                <span>Free</span>
-              </div>
-              <div className="flex justify-between font-bold">
-                <span>Total</span>
-                <span>${total.toFixed(2)}</span>
-              </div>
-            </div>
-            <Button className="w-full mt-4">Checkout</Button>
-          </div>
+          <h2 className="card-title">Tu carrito está vacío</h2>
+          <p className="text-muted">
+            Parece que aún no has añadido ningún producto a tu carrito. Explora nuestra colección para encontrar lo que buscas.
+          </p>
+          <br />
+          <Link to="/catalog" className="link-button">
+            Continuar Comprando
+          </Link>
         </div>
       )}
     </div>

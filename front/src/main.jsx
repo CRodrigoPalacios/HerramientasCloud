@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import HomePage from './pages/HomePage';
@@ -8,6 +9,7 @@ import CatalogPage from './pages/CatalogPage';
 import ProductPage from './pages/ProductDetails';
 import AboutPage from './pages/AboutPage';
 import ContactPage from './pages/ContactPage';
+import CartPage from './pages/CartPage';
 import Brands from './pages/Brands';
 import ProductListing from './pages/ProductListing';
 import ProductDetail from './pages/ProductDetails';
@@ -16,6 +18,7 @@ import RegisterPage from './pages/RegisterPage';
 import Dashboard from './pages/Dashboard';
 import ProtectedRoute from './components/ProtectedRoute';
 import { AuthProvider } from './context/AuthContext';
+import { CartProvider } from './context/CartContext';
 import UserList from './pages/dashboard/UserListPage';
 import AdminProductsPage from './pages/dashboard/AdminProductsPage';
 
@@ -46,6 +49,7 @@ const router = createBrowserRouter([
       { path: "/product/:id", element: <ProductPage /> },
       { path: "/about", element: <AboutPage /> },
       { path: "/contact", element: <ContactPage /> },
+      {path: "/cart", element: <CartPage /> },
       { path: "/brands", element: <Brands /> },
       { path: "/productlisting", element: <ProductListing /> },
       { path: "/productdetail/:id", element: <ProductDetail /> },
@@ -83,7 +87,10 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <AuthProvider>
-      <RouterProvider router={router} />
+      <CartProvider>
+        <RouterProvider router={router} />
+      </CartProvider>
     </AuthProvider>
   </React.StrictMode>
 );
+
