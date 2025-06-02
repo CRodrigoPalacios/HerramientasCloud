@@ -10,6 +10,7 @@ import ProductPage from './pages/ProductDetails';
 import AboutPage from './pages/AboutPage';
 import ContactPage from './pages/ContactPage';
 import CartPage from './pages/CartPage';
+import CheckoutPage from './pages/CheckoutPage';
 import Brands from './pages/Brands';
 import ProductListing from './pages/ProductListing';
 import ProductDetail from './pages/ProductDetails';
@@ -50,6 +51,7 @@ const router = createBrowserRouter([
       { path: "/about", element: <AboutPage /> },
       { path: "/contact", element: <ContactPage /> },
       {path: "/cart", element: <CartPage /> },
+      {path: "/checkout", element: <CheckoutPage /> },
       { path: "/brands", element: <Brands /> },
       { path: "/productlisting", element: <ProductListing /> },
       { path: "/productdetail/:id", element: <ProductDetail /> },
