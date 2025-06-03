@@ -1,6 +1,7 @@
 import {
   Controller,
   Get,
+  Query,
   Post,
   Body,
   Param,
@@ -10,6 +11,7 @@ import {
 import { ProductsService } from './products.service';
 import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
+import { FilterProductsDto } from './dto/filter-products.dto';
 
 @Controller('products')
 export class ProductsController {
@@ -25,10 +27,17 @@ export class ProductsController {
     return this.productsService.findAll();
   }
 
+  @Get('filter')
+  async filterProducts(@Query() filterDto: FilterProductsDto) {
+    return this.productsService.filterAndSortProducts(filterDto);
+  }
+
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.productsService.findOne(id);
   }
+
+   
 
   @Put(':id')
   update(
@@ -42,4 +51,6 @@ export class ProductsController {
   remove(@Param('id') id: string) {
     return this.productsService.remove(id);
   }
+
+ 
 }

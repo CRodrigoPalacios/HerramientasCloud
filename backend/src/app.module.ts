@@ -1,6 +1,8 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ProductsModule } from './modules/products/products.module';
+import { OrdersModule } from './modules/orders/orders.module';
+import { AuthModule } from './modules/auth/auth.module';
 import { UploadsModule } from './modules/uploads/uploads.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 
@@ -16,6 +18,8 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
       }),
     }),
     ProductsModule,
+    OrdersModule,
+    AuthModule,
     UploadsModule,
   ],
 })
