@@ -1,13 +1,17 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { login } from "../../services/authService";
+import { login as loginService } from "../../services/authService";
 import { FaUserCircle } from "react-icons/fa";
+import { useAuth } from "../../context/AuthContext"; // importa tu contexto
+
+const API_URL = import.meta.env.VITE_AUTH_API_URL || 'http://localhost:3000';
 
 export default function Login() {
   const [form, setForm] = useState({ correo: "", password: "" });
   const [message, setMessage] = useState("");
   const [messageType, setMessageType] = useState<"success" | "error" | "">("");
   const navigate = useNavigate();
+  const { login } = useAuth(); // accede a la función login del contexto
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -21,10 +25,27 @@ export default function Login() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const res = await login(form);
-      localStorage.setItem("token", res.data.access_token);
+      const res = await loginService(form);
+      const token = res.data.access_token;
+
+      localStorage.setItem("token", token);
+
+      // Obtener perfil del usuario desde el backend
+      const profileRes = await fetch(`${API_URL}/auth/profile`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (!profileRes.ok) throw new Error("Error al obtener perfil");
+
+      const userData = await profileRes.json();
+
+      login(userData); // actualiza el contexto con el usuario
+
       setMessage("Inicio de sesión exitoso");
       setMessageType("success");
+
       setTimeout(() => navigate("/profile"), 500);
     } catch (err) {
       console.error("Error en login:", err);

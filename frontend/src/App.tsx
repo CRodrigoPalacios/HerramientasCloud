@@ -1,7 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import ProductsList from './pages/CatalogPage';
-import AddProduct from './pages/AddProduct';
 import ProductDetails from './pages/ProductDetails';
 import HomePage from './pages/HomePage';
 import Navbar from './components/Navbar';
@@ -13,6 +12,7 @@ import Profile from './pages/auth/Profile';
 import Footer from './components/Footer';
 import BrandsPage from './pages/MarcasPage';
 import ContactPage from './pages/ContactPage';
+import AdminProductsPage from './pages/AdminProductPage';
 
 const App: React.FC = () => {
   return (
@@ -24,7 +24,7 @@ const App: React.FC = () => {
         <Route path="/register" element={<Register />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/catalogo" element={<ProductsList />} />
-        <Route path="/add" element={<AddProduct />} />
+        <Route path="/add" element={<AdminProductsPage />} />
         <Route path="/product/:id" element={<ProductDetails />} />
         <Route path="/contacto" element={<ContactPage />} />
         <Route path="/marcas" element={<BrandsPage />} />

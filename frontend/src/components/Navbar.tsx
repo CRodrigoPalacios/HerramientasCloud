@@ -17,32 +17,44 @@ export default function Navbar() {
   }, []);
 
   useEffect(() => {
-    const token = localStorage.getItem('token');
-    if (!token) {
-      setUser(null);
-      return;
-    }
+    const fetchUser = () => {
+      const token = localStorage.getItem('token');
+      if (!token) {
+        setUser(null);
+        return;
+      }
 
-    fetch(`${API_URL}/auth/profile`, {
-      headers: { Authorization: `Bearer ${token}` },
-    })
-      .then(res => {
-        if (!res.ok) throw new Error('Failed to fetch profile');
-        return res.json();
+      fetch(`${API_URL}/auth/profile`, {
+        headers: { Authorization: `Bearer ${token}` },
       })
-      .then(data => {
-        const role = typeof data.role === 'string'
-          ? data.role
-          : (data.role && typeof data.role.nombre === 'string' ? data.role.nombre : null);
+        .then(res => {
+          if (!res.ok) throw new Error('Failed to fetch profile');
+          return res.json();
+        })
+        .then(data => {
+          const role = typeof data.role === 'string'
+            ? data.role
+            : (data.role && typeof data.role.nombre === 'string' ? data.role.nombre : null);
 
-        if (role && data.nombre) {
-          setUser({ nombre: data.nombre, role });
-        } else {
-          setUser(null);
-        }
-      })
-      .catch(() => setUser(null));
+          if (role && data.nombre) {
+            setUser({ nombre: data.nombre, role });
+          } else {
+            setUser(null);
+          }
+        })
+        .catch(() => setUser(null));
+    };
+
+    fetchUser();
+
+    // Escucha cambios en localStorage para actualizar user al login/logout en otras pestañas
+    window.addEventListener('storage', fetchUser);
+
+    return () => {
+      window.removeEventListener('storage', fetchUser);
+    };
   }, []);
+
 
   const handleLogout = () => {
     localStorage.removeItem('token');
