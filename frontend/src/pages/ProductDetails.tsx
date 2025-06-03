@@ -70,7 +70,7 @@ const ProductDetails: React.FC = () => {
           >
             🛒 Comprar
           </button>
-          <Link to="/catalog">
+          <Link to="/catalogo">
             <button className="border border-gray-400 px-6 py-2 rounded hover:bg-gray-100">
               ← Volver al catálogo
             </button>

@@ -53,7 +53,7 @@ const ContactPage: FC = () => {
 
       <div className="mt-12 text-center text-gray-700 space-y-2">
         <div className="text-lg">✉️ carlos@luxurywatches.com</div>
-        <div className="text-lg">📞 +51 914730603</div>
+        <div className="text-lg">📞 +51 914 730 603</div>
       </div>
     </div>
   );

@@ -21,12 +21,17 @@ interface Props {
 const ProductCard: React.FC<Props> = ({ product }) => {
   return (
     <div className="bg-white rounded-xl shadow-md hover:shadow-lg transition p-4 flex flex-col">
-      <div className="w-full h-60 bg-gray-100 rounded-md overflow-hidden mb-4 flex items-center justify-center">
-        <img
-          src={product.image}
-          alt={product.name}
-          className="w-full max-w-md h-[400px] object-cover rounded-lg shadow"
-        />
+      {/* Imagen con tamaño fijo y centrado */}
+      <div className="w-full h-64 bg-gray-100 rounded-md overflow-hidden flex items-center justify-center mb-4">
+        {product.image ? (
+          <img
+            src={product.image}
+            alt={product.name}
+            className="w-full h-full object-cover"
+          />
+        ) : (
+          <span className="text-gray-400 text-sm">Sin imagen</span>
+        )}
       </div>
 
       <h3 className="text-lg font-semibold mb-1 line-clamp-1">{product.name}</h3>
