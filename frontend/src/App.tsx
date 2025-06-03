@@ -12,6 +12,7 @@ import Profile from './pages/auth/Profile';
 import Footer from './components/Footer';
 import BrandsPage from './pages/MarcasPage';
 import ContactPage from './pages/ContactPage';
+import CartPage from './pages/CartPage';
 import AdminProductsPage from './pages/AdminProductPage';
 
 const App: React.FC = () => {
@@ -27,6 +28,7 @@ const App: React.FC = () => {
         <Route path="/add" element={<AdminProductsPage />} />
         <Route path="/product/:id" element={<ProductDetails />} />
         <Route path="/contacto" element={<ContactPage />} />
+        <Route path="/cart" element={<CartPage />} />
         <Route path="/marcas" element={<BrandsPage />} />
         <Route
           path="/admin"

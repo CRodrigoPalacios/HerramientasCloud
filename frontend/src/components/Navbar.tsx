@@ -46,15 +46,9 @@ export default function Navbar() {
     };
 
     fetchUser();
-
-    // Escucha cambios en localStorage para actualizar user al login/logout en otras pestañas
     window.addEventListener('storage', fetchUser);
-
-    return () => {
-      window.removeEventListener('storage', fetchUser);
-    };
+    return () => window.removeEventListener('storage', fetchUser);
   }, []);
-
 
   const handleLogout = () => {
     localStorage.removeItem('token');
@@ -79,10 +73,12 @@ export default function Navbar() {
           >
             {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
+
           <Link to="/" className="text-xl font-serif font-bold text-gray-900">
             LuxuryWatches
           </Link>
-          <nav className={`md:flex gap-6 hidden`}>
+
+          <nav className="md:flex gap-6 hidden">
             <Link to="/catalogo" className="text-sm hover:text-yellow-600">Colección</Link>
             <Link to="/marcas" className="text-sm hover:text-yellow-600">Marcas</Link>
             <Link to="/about" className="text-sm hover:text-yellow-600">Historia</Link>
@@ -135,16 +131,15 @@ export default function Navbar() {
               <option value="register">Registrarse</option>
             </select>
           )}
-
         </div>
       </div>
 
       {mobileMenuOpen && (
         <div className="md:hidden bg-white shadow-md py-4 px-6 space-y-4">
           <Link to="/catalogo" onClick={() => setMobileMenuOpen(false)}>Colección</Link>
-          <Link to="/brands" onClick={() => setMobileMenuOpen(false)}>Marcas</Link>
+          <Link to="/marcas" onClick={() => setMobileMenuOpen(false)}>Marcas</Link>
           <Link to="/about" onClick={() => setMobileMenuOpen(false)}>Historia</Link>
-          <Link to="/contact" onClick={() => setMobileMenuOpen(false)}>Contacto</Link>
+          <Link to="/contacto" onClick={() => setMobileMenuOpen(false)}>Contacto</Link>
           {user?.role === 'admin' && (
             <>
               <Link to="/dashboard/UserList" onClick={() => setMobileMenuOpen(false)}>Usuarios</Link>
