@@ -12,7 +12,11 @@ async function bootstrap() {
     transform: true, // convierte tipos (por ejemplo strings a number)
   }));
 
+  // Enable CORS for frontend origin
+  app.enableCors({
+    origin: 'http://localhost:5173',
+  });
+
   await app.listen(3000);
 }
 bootstrap();
-

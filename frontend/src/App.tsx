@@ -1,12 +1,27 @@
 import React from 'react';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import ProductsList from './pages/CatalogPage';
+import AddProduct from './pages/AddProduct';
+import ProductDetails from './pages/ProductDetails';
 
-function App() {
+const App: React.FC = () => {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-blue-100">
-      <h1 className="text-4xl font-bold text-blue-700">
-        ¡Hola desde React + Vite + TypeScript + Tailwind!
-      </h1>
-    </div>
+    <Router>
+      <div className="min-h-screen bg-blue-100">
+        <nav className="bg-blue-700 p-4 text-white flex space-x-4">
+          <Link to="/catalogo" className="hover:underline">Productos</Link>
+          <Link to="/add" className="hover:underline">Añadir Producto</Link>
+        </nav>
+        <main className="p-4">
+          <Routes>
+            <Route path="/catalogo" element={<ProductsList />} />
+            <Route path="/add" element={<AddProduct />} />
+            <Route path="/product/:id" element={<ProductDetails />} />
+
+          </Routes>
+        </main>
+      </div>
+    </Router>
   );
 }
 
