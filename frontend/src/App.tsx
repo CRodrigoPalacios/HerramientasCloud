@@ -1,28 +1,45 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import ProductsList from './pages/CatalogPage';
 import AddProduct from './pages/AddProduct';
 import ProductDetails from './pages/ProductDetails';
+import HomePage from './pages/HomePage';
+import Navbar from './components/Navbar';
+import AdminPanel from './pages/auth/AdminPanel';
+import AdminRoute from './components/AdminRoute';
+import Login from './pages/auth/Login';
+import Register from './pages/auth/Register';
+import Profile from './pages/auth/Profile';
+import Footer from './components/Footer';
+import BrandsPage from './pages/MarcasPage';
+import ContactPage from './pages/ContactPage';
 
 const App: React.FC = () => {
   return (
     <Router>
-      <div className="min-h-screen bg-blue-100">
-        <nav className="bg-blue-700 p-4 text-white flex space-x-4">
-          <Link to="/catalogo" className="hover:underline">Productos</Link>
-          <Link to="/add" className="hover:underline">Añadir Producto</Link>
-        </nav>
-        <main className="p-4">
-          <Routes>
-            <Route path="/catalogo" element={<ProductsList />} />
-            <Route path="/add" element={<AddProduct />} />
-            <Route path="/product/:id" element={<ProductDetails />} />
-
-          </Routes>
-        </main>
-      </div>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/catalogo" element={<ProductsList />} />
+        <Route path="/add" element={<AddProduct />} />
+        <Route path="/product/:id" element={<ProductDetails />} />
+        <Route path="/contacto" element={<ContactPage />} />
+        <Route path="/marcas" element={<BrandsPage />} />
+        <Route
+          path="/admin"
+          element={
+            <AdminRoute>
+              <AdminPanel />
+            </AdminRoute>
+          }
+        />
+      </Routes>
+     <Footer />
     </Router>
   );
-}
+};
 
 export default App;
