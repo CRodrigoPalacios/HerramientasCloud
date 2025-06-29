@@ -14,6 +14,7 @@ import BrandsPage from './pages/MarcasPage';
 import ContactPage from './pages/ContactPage';
 import CartPage from './pages/CartPage';
 import AdminProductsPage from './pages/AdminProductPage';
+import UserList from './components/dashboard/UserList';
 import VerificationSuccess from './pages/VerificationSuccess';
 import VerificationFailed from './pages/VerificationFailed';
 
@@ -27,7 +28,10 @@ const App: React.FC = () => {
         <Route path="/register" element={<Register />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/catalogo" element={<ProductsList />} />
-        <Route path="/add" element={<AdminProductsPage />} />
+        <Route path="/admin" element={<AdminRoute><AdminPanel /></AdminRoute>}>
+          <Route path="users" element={<UserList />} />
+          <Route path="products" element={<AdminProductsPage />} />
+        </Route>
         <Route path="/product/:id" element={<ProductDetails />} />
         <Route path="/contacto" element={<ContactPage />} />
         <Route path="/cart" element={<CartPage />} />
