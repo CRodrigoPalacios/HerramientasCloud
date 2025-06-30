@@ -89,7 +89,7 @@ export default function ProductList() {
           className="flex flex-col sm:flex-row items-start bg-white shadow-md rounded-2xl p-5 mb-6 gap-4 hover:scale-[1.01] transition-transform"
         >
           <img
-            src={`http://localhost:5000/uploads/${product.image}`}
+            src={product.image}
             alt={product.name}
             className="w-32 h-auto rounded-lg object-cover"
           />

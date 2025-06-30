@@ -90,10 +90,10 @@ export default function Navbar() {
                   if (e.target.value) navigate(e.target.value);
                 }}
               >
-                <option value="">Admin Panel</option>
-                <option value="/admin/users">Usuarios</option>
-                <option value="/admin/products">Productos</option>
-                <option value="/admin/settings">Configuración</option>
+                <option value="/admin-panel">Admin Panel</option>
+                <option value="/admin-panel">Usuarios</option>
+                <option value="/admin-panel">Productos</option>
+                <option value="/dashboard/Settings">Configuración</option>
               </select>
             )}
           </nav>
@@ -142,9 +142,9 @@ export default function Navbar() {
           <Link to="/contacto" onClick={() => setMobileMenuOpen(false)}>Contacto</Link>
           {user?.role === 'admin' && (
             <>
-              <Link to="/admin/users" onClick={() => setMobileMenuOpen(false)}>Usuarios</Link>
-              <Link to="/admin/products" onClick={() => setMobileMenuOpen(false)}>Productos</Link>
-              <Link to="/admin/settings" onClick={() => setMobileMenuOpen(false)}>Configuración</Link>
+              <Link to="/dashboard/UserList" onClick={() => setMobileMenuOpen(false)}>Usuarios</Link>
+              <Link to="/dashboard/AdminProducts" onClick={() => setMobileMenuOpen(false)}>Productos</Link>
+              <Link to="/dashboard/Settings" onClick={() => setMobileMenuOpen(false)}>Configuración</Link>
             </>
           )}
         </div>
