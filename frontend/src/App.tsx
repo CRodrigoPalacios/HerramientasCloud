@@ -17,32 +17,46 @@ import AdminProductsPage from './pages/AdminProductPage';
 import VerificationSuccess from './pages/VerificationSuccess';
 import VerificationFailed from './pages/VerificationFailed';
 
+// 👇 Chatbot
+import { ChatbotProvider } from './components/chatbot/ChatbotContext';
+import  ChatBubble  from './components/chatbot/ChatBubble';
+import ChatbotPage  from './pages/Chatbot/ChatbotPage';
+
 const App: React.FC = () => {
   return (
-    <Router>
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/catalogo" element={<ProductsList />} />
-        <Route path="/admin-panel" element={<AdminProductsPage />} />
-        <Route path="/product/:id" element={<ProductDetails />} />
-        <Route path="/contacto" element={<ContactPage />} />
-        <Route path="/cart" element={<CartPage />} />
-        <Route path="/marcas" element={<BrandsPage />} />
-        <Route path="/verification-success" element={<VerificationSuccess />} />
-        <Route path="/verification-failed" element={<VerificationFailed />} />
-        <Route path="/admin" element={
-          <AdminRoute>
-            <AdminPanel />
-          </AdminRoute>
-        }
-        />
-      </Routes>
-      <Footer />
-    </Router>
+    <ChatbotProvider>
+      <Router>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/catalogo" element={<ProductsList />} />
+          <Route path="/admin-panel" element={<AdminProductsPage />} />
+          <Route path="/product/:id" element={<ProductDetails />} />
+          <Route path="/contacto" element={<ContactPage />} />
+          <Route path="/cart" element={<CartPage />} />
+          <Route path="/marcas" element={<BrandsPage />} />
+          <Route path="/verification-success" element={<VerificationSuccess />} />
+          <Route path="/verification-failed" element={<VerificationFailed />} />
+          <Route path="/chatbot" element={<ChatbotPage />} />
+          <Route
+            path="/admin"
+            element={
+              <AdminRoute>
+                <AdminPanel />
+              </AdminRoute>
+            }
+          />
+        </Routes>
+        <Footer />
+
+        {/* 👇 Chatbot floating bubble */}
+        <ChatBubble />
+        <ChatbotPage />
+      </Router>
+    </ChatbotProvider>
   );
 };
 

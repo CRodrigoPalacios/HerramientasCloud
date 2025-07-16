@@ -23,7 +23,8 @@ type CartAction =
   | { type: 'ADD_ITEM'; payload: CartItem }
   | { type: 'REMOVE_ITEM'; payload: string } // id del producto
   | { type: 'UPDATE_QUANTITY'; payload: { id: string; quantity: number } }
-  | { type: 'SET_ADDRESS'; payload: Address };
+  | { type: 'SET_ADDRESS'; payload: Address }
+  | { type: 'CLEAR_CART' }; // Acción para limpiar el carrito
 
 // Tipo del estado
 interface CartState {

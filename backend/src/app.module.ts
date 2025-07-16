@@ -1,12 +1,12 @@
+// backend/src/app.module.ts
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ProductsModule } from './modules/products/products.module';
 import { OrdersModule } from './modules/orders/orders.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { UploadsModule } from './modules/uploads/uploads.module';
+import { BotModule } from './modules/bot/bot.module'; // Importa el BotModule
 import { ConfigModule, ConfigService } from '@nestjs/config';
-
-// ... otros imports
 
 @Module({
   imports: [
@@ -21,6 +21,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
     OrdersModule,
     AuthModule,
     UploadsModule,
+    BotModule, // Añade el BotModule aquí
   ],
 })
 export class AppModule {}
