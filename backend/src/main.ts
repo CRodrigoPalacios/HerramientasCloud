@@ -18,7 +18,9 @@ async function bootstrap() {
   app.enableCors({
     origin: [
     'http://localhost:5173', // para desarrollo local
-    'https://herramientas-cloud-2xnxi6cir.vercel.app' // dominio de Vercel
+    'https://herramientas-cloud-2xnxi6cir.vercel.app',
+    'https://herramientas-cloud.vercel.app/',
+    '*' // dominio de Vercel
   ],
   });
 
