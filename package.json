@@ -2,11 +2,10 @@
   "name": "herramientas-proyecto",
   "version": "1.0.0",
   "scripts": {
-    "build": "cd frontend && npm install && npm run build && cd ../backend && npm install && npm run build && npm run copy-frontend",
-    "build:win": "cd frontend && npm install && npm run build && cd ../backend && npm install && npm run build && xcopy \"..\\frontend\\dist\" \"public\" /E /I /Y",
-    "build:unix": "cd frontend && npm install && npm run build && cd ../backend && npm install && npm run build && xcopy -r ../frontend/dist ./public",
-    "start": "cd backend && npm run start:prod"
-  },
+  "start": "cd backend && node dist/main.js",
+  "start:prod": "cd backend && node dist/main.js",
+  "build": "cd backend && nest build"
+},
   "engines": {
     "node": "18.x"
   }
