@@ -16,7 +16,10 @@ async function bootstrap() {
 
   // Enable CORS for frontend origin
   app.enableCors({
-    origin: 'http://localhost:5173',
+    origin: [
+    'http://localhost:5173', // para desarrollo local
+    'https://herramientas-cloud-2xnxi6cir.vercel.app' // dominio de Vercel
+  ],
   });
 
   await app.listen(3000);
