@@ -4,7 +4,7 @@ import { login as loginService } from "../../services/authService";
 import { FaUserCircle } from "react-icons/fa";
 import { useAuth } from "../../context/AuthContext"; // importa tu contexto
 
-const API_URL = import.meta.env.VITE_AUTH_API_URL || 'http://localhost:3000';
+const API_URL = import.meta.env.VITE_AUTH_API_URL || 'https://herramientascloud-production.up.railway.app';
 
 export default function Login() {
   const [form, setForm] = useState({ correo: "", password: "" });

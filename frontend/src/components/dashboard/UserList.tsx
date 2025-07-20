@@ -17,7 +17,7 @@ const UserList: React.FC = () => {
   const [editRole, setEditRole] = useState<string>('');
 
   const fetchUsers = async () => {
-    const res = await fetch('http://localhost:3000/auth/users', {
+    const res = await fetch('https://herramientascloud-production.up.railway.app/auth/users', {
       headers: {
         Authorization: `Bearer ${localStorage.getItem('token')}`,
       },
@@ -40,7 +40,7 @@ const UserList: React.FC = () => {
   };
 
   const handleSave = async (id: string) => {
-    const res = await fetch(`http://localhost:3000/auth/users/${id}/role`, {
+    const res = await fetch(`https://herramientascloud-production.up.railway.app/auth/users/${id}/role`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${localStorage.getItem('token')}` },
       body: JSON.stringify({ role: editRole }),
@@ -55,7 +55,7 @@ const UserList: React.FC = () => {
   };
 
   const handleBanToggle = async (id: string, currentStatus: boolean) => {
-    const res = await fetch(`http://localhost:3000/auth/users/${id}/ban`, {
+    const res = await fetch(`https://herramientascloud-production.up.railway.app/auth/users/${id}/ban`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${localStorage.getItem('token')}` },
       body: JSON.stringify({ isBanned: !currentStatus }),

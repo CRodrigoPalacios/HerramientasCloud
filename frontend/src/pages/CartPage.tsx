@@ -66,7 +66,7 @@ const CartPage: React.FC = () => {
 
     try {
       const token = localStorage.getItem('token');
-      const res = await fetch('http://localhost:3000/orders', {
+      const res = await fetch('https://herramientascloud-production.up.railway.app/orders', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
         body: JSON.stringify(orderData),

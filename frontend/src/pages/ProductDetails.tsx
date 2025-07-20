@@ -21,7 +21,7 @@ const ProductDetails: React.FC = () => {
   const { dispatch } = useCart();
 
   useEffect(() => {
-    fetch(`http://localhost:3000/products/${id}`)
+    fetch(`https://herramientascloud-production.up.railway.app/products/${id}`)
       .then(res => res.json())
       .then(data => setProduct(data))
       .catch(err => console.error('Error al cargar producto:', err));

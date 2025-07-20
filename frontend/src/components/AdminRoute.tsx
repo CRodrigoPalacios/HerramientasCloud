@@ -17,7 +17,7 @@ const AdminRoute: React.FC<AdminRouteProps> = ({ children }) => {
       setLoading(false);
       return;
     }
-    fetch('http://localhost:3000/users/profile', {
+    fetch('https://herramientascloud-production.up.railway.app/users/profile', {
       headers: { Authorization: `Bearer ${token}` },
     })
       .then(res => {

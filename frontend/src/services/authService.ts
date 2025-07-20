@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = import.meta.env.VITE_AUTH_API_URL || 'http://localhost:3000';
+const API_URL = import.meta.env.VITE_AUTH_API_URL || 'https://herramientascloud-production.up.railway.app';
 
 export const register = (data: any) => axios.post(`${API_URL}/auth/register`, data);
 export const login = (data: any) => axios.post(`${API_URL}/auth/login`, data);

@@ -18,7 +18,7 @@ export default function ProductList() {
   const [editValues, setEditValues] = useState<Partial<Product>>({});
 
   const fetchProducts = async () => {
-    const res = await fetch('http://localhost:3000/products', {
+    const res = await fetch('https://herramientascloud-production.up.railway.app/products', {
       headers: {
         Authorization: `Bearer ${localStorage.getItem('token')}`,
       },
@@ -32,7 +32,7 @@ export default function ProductList() {
   }, []);
 
   const handleDelete = async (id: string) => {
-    const res = await fetch(`http://localhost:3000/products/${id}`, {
+    const res = await fetch(`https://herramientascloud-production.up.railway.app/products/${id}`, {
       method: 'DELETE',
       headers: {
         Authorization: `Bearer ${localStorage.getItem('token')}`,
@@ -53,7 +53,7 @@ export default function ProductList() {
   };
 
   const handleEditSave = async (id: string) => {
-    const res = await fetch(`http://localhost:3000/products/${id}`, {
+    const res = await fetch(`https://herramientascloud-production.up.railway.app/products/${id}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${localStorage.getItem('token')}` },
       body: JSON.stringify(editValues),
@@ -66,7 +66,7 @@ export default function ProductList() {
   };
 
   const handleDisableToggle = async (id: string, currentStatus: boolean) => {
-    const res = await fetch(`http://localhost:3000/products/${id}/disable`, {
+    const res = await fetch(`https://herramientascloud-production.up.railway.app/products/${id}/disable`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${localStorage.getItem('token')}` },
       body: JSON.stringify({ isDisabled: !currentStatus }),

@@ -23,7 +23,7 @@ export default function CatalogPage(): JSX.Element {
   const [sortOption, setSortOption] = useState('Featured');
 
   const fetchProducts = (params: string) => {
-    fetch(`http://localhost:3000/products?${params}`)
+    fetch(`https://herramientascloud-production.up.railway.app/products?${params}`)
       .then(res => res.json())
       .then(data => {
         setProducts(data);

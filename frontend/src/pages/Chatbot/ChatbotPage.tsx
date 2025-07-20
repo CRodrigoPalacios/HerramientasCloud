@@ -13,7 +13,7 @@ const ChatbotPage: React.FC = () => {
 
     addMessage({ sender: 'user', text: input });
     try {
-      const response = await axios.post('http://localhost:3000/bot/ecommerce-chat', {
+      const response = await axios.post('https://herramientascloud-production.up.railway.app/bot/ecommerce-chat', {
         question: input,
         context,
       });

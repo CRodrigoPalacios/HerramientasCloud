@@ -15,7 +15,7 @@ interface EditAddressFormProps {
   onCancel: () => void;
 }
 
-const API_URL = import.meta.env.VITE_AUTH_API_URL || 'http://localhost:3000';
+const API_URL = import.meta.env.VITE_AUTH_API_URL || 'https://herramientascloud-production.up.railway.app';
 
 const EditAddressForm: React.FC<EditAddressFormProps> = ({
   currentAddress,

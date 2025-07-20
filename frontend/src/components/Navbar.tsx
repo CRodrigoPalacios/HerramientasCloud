@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { ShoppingCart, User, Search, Menu, X } from 'lucide-react';
 
-const API_URL = import.meta.env.VITE_AUTH_API_URL || 'http://localhost:3000';
+const API_URL = import.meta.env.VITE_AUTH_API_URL || 'https://herramientascloud-production.up.railway.app';
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);

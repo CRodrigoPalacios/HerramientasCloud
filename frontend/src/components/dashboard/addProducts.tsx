@@ -50,7 +50,7 @@ const AddProduct: React.FC<AddProductProps> = ({ onProductAdded }) => {
     }
 
     try {
-      const res = await fetch('http://localhost:3000/products', {
+      const res = await fetch('https://herramientascloud-production.up.railway.app/products', {
         method: 'POST',
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
