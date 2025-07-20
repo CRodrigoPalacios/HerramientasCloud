@@ -1,32 +1,25 @@
-# Dockerfile
 FROM node:18-alpine
 
 WORKDIR /app
 
-# Copiar package.json files
-COPY package*.json ./
-COPY backend/package*.json ./backend/
-COPY frontend/package*.json ./frontend/
+# Copiar solo los package.json primero (para mejor caching)
+COPY backend/package*.json ./back/
+COPY frontend/package*.json ./front/
+
+# Instalar dependencias del frontend
+WORKDIR /app/frontend
+COPY frontend/ .
+RUN npm install
+RUN npm run build
 
 # Instalar dependencias del backend
 WORKDIR /app/backend
-RUN npm install
-
-# Instalar dependencias del frontend y hacer build
-WORKDIR /app/frontend
+COPY backend/ .
 RUN npm install
 RUN npm run build
 
-# Copiar el resto de archivos
-WORKDIR /app
-COPY . .
-
-# Build del backend
-WORKDIR /app/backend
-RUN npm run build
-
-# Copiar archivos del frontend al backend
-RUN cp -r /app/frontend/dist /app/backend/
+# Copiar el build del frontend al backend
+RUN cp -r /app/frontend/dist ./public
 
 EXPOSE 3000
 
