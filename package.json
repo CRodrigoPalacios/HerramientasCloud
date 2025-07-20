@@ -1,0 +1,7 @@
+{
+  "name": "mi-app-fullstack",
+  "scripts": {
+    "build": "cd frontend && npm install && npm run build",
+    "start": "cd backend && npm run start:prod"
+  }
+}
