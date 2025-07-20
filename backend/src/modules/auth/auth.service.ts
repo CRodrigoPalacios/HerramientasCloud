@@ -88,7 +88,9 @@ export class AuthService {
     const user = await this.userModel.findOne({ correo }).select('+password');
     if (user && (await bcrypt.compare(password, user.password))) {
       if (!user.emailVerified) {
-        throw new UnauthorizedException('Por favor, verifica tu correo electrónico para iniciar sesión.');
+        throw new UnauthorizedException(
+          'Por favor, verifica tu correo electrónico para iniciar sesión.',
+        );
       }
       if (user.isBanned) {
         throw new UnauthorizedException('Tu cuenta ha sido baneada.');
@@ -150,13 +152,16 @@ export class AuthService {
     return user;
   }
 
-  async updateAddress(id: string, address: {
-    street?: string;
-    city?: string;
-    state?: string;
-    postalCode?: string;
-    country?: string;
-  }) {
+  async updateAddress(
+    id: string,
+    address: {
+      street?: string;
+      city?: string;
+      state?: string;
+      postalCode?: string;
+      country?: string;
+    },
+  ) {
     const user = await this.userModel.findById(id);
     if (!user) {
       throw new Error('Usuario no encontrado');

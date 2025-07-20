@@ -22,6 +22,9 @@ import { AdminGuard } from './admin.guard';
   ],
   controllers: [AuthController],
   providers: [AuthService, JwtStrategy, AdminGuard],
-  exports: [JwtStrategy, MongooseModule.forFeature([{ name: User.name, schema: UserSchema }])],
+  exports: [
+    JwtStrategy,
+    MongooseModule.forFeature([{ name: User.name, schema: UserSchema }]),
+  ],
 })
 export class AuthModule {}
